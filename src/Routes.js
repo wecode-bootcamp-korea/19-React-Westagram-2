@@ -8,8 +8,8 @@ import {
 import LoginHeeyeol from "./pages/heeyeolKim/Login/Login";
 import MainHeeyeol from "./pages/heeyeolKim/Main/Main";
 
-import LoginJongho from "./pages/jonghoLee/Login/Login";
-import MainJongho from "./pages/jonghoLee/Main/Main";
+import LoginJongho from "./pages/jonghoLee/LoginPage/Login";
+import MainJongho from "./pages/jonghoLee/MainPage/MainPage";
 
 import LoginTaehyun from "./pages/taehyunKim/Login/Login";
 import MainTaehyun from "./pages/taehyunKim/Main/Main";

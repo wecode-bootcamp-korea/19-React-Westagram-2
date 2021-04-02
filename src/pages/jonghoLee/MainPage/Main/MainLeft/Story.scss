@@ -1,0 +1,83 @@
+@import "../../../common.scss";
+@import "../../../reset.css";
+
+.story-container {
+  display: flex;
+  height: 118px;
+
+  margin-bottom: 25px;
+  padding: 16px auto;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #dadada;
+  background-color: white;
+
+  overflow: hidden;
+
+  .story-btn-box {
+    width: 614px;
+    height: 20px;
+
+    position: relative;
+
+    z-index: 1;
+
+    .story-previous,
+    .story-next {
+      width: 25px;
+      height: 25px;
+
+      position: absolute;
+
+      background-color: white;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .story-previous {
+      margin-left: 1%;
+    }
+
+    .story-next {
+      margin-left: 95%;
+    }
+  }
+
+  .story-list {
+    height: 100px;
+
+    display: flex;
+
+    position: absolute;
+
+    .story-content {
+      width: 70px;
+      height: 80px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      margin: auto 7.5px;
+
+      .story-content-icon {
+        width: 66px;
+        height: 66px;
+
+        padding: 2px;
+
+        border: 2px solid burlywood;
+        border-radius: 50%;
+      }
+      .story-content-nickname {
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+  }
+}
