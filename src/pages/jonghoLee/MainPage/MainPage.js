@@ -8,7 +8,7 @@ import '../common.scss';
 export default class MainPage extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container" ref>
         <Nav />
         <Main />
       </div>

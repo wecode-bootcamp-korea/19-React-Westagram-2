@@ -8,32 +8,25 @@ export default class Comment extends Component {
     super();
 
     this.state = {
-      comments: [],
-      comment: ""
+      comment: "",
+      isAbled: true,
     }
-
     this.commentInputRef = React.createRef();
   }
 
-  commentBtnClick = async (e) => {
+  commentBtnClick = (e) => {
     e.preventDefault();
+    this.updateComment();
+  }
 
-    await this.setState({
-      comments: [...this.state.comments, this.state.comment],
-    })
-
-    await this.props.changeComment(this.state.comments);
+  updateComment = () => {
+    this.props.changeComment(this.state.comment);
     this.commentInputRef.current.value = "";
   }
 
-  commentInputKeyPress = async (e) => {
-    if (e.key === 'Enter') {
-      await this.setState({
-        comments: [...this.state.comments, this.state.comment],
-      })
-
-      await this.props.changeComment(this.state.comments);
-      this.commentInputRef.current.value = "";
+  commentInputKeyPress = (e) => {
+    if (e.key === 'Enter' && this.state.comment.trim().length > 0) {
+      this.updateComment()
     }
   }
 
@@ -41,18 +34,20 @@ export default class Comment extends Component {
     this.setState({
       comment: e.target.value
     });
-  }
 
+    this.setState({
+      isAbled: !(e.target.value.trim().length > 0)
+    })
+  }
 
   render() {
     return (
       <div className="comment">
-        {/* <!-- 7. comment --> */}
         <form className="comment-form" action="#">
           <img className="comment-image" src={smileImg} alt="smile" />
-          <textarea className="comment-text" name="" id="" cols="30" rows="10"
+          <textarea className="comment-text" name="" cols="30" rows="10"
             placeholder="댓글 달기..." onChange={this.handleAddComment} ref={this.commentInputRef} onKeyPress={this.commentInputKeyPress}></textarea>
-          <button className="comment-btn" onClick={this.commentBtnClick}  >게시</button>
+          <button className="comment-btn" onClick={this.commentBtnClick} disabled={this.state.isAbled} >게시</button>
         </form>
       </div>
     )

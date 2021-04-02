@@ -24,8 +24,6 @@
 
     position: relative;
 
-    z-index: 1;
-
     .story-previous,
     .story-next {
       width: 25px;
@@ -35,7 +33,6 @@
 
       background-color: white;
       border-radius: 50%;
-      z-index: 1;
     }
 
     .story-previous {

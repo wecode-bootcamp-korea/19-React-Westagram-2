@@ -3,7 +3,6 @@ import UserComment from './UserComment';
 import Comment from './Comment';
 import './Article.scss';
 import moreImg from '../../../../../images/jonghoLee/more.png';
-import alcoholImg from '../../../../../images/jonghoLee/alcohol.jpg';
 import heartImg from '../../../../../images/jonghoLee/heart.png';
 import chatImg from '../../../../../images/jonghoLee/chat.png';
 import paperImg from '../../../../../images/jonghoLee/paper-plane.png';
@@ -18,9 +17,9 @@ export default class Article extends Component {
     }
   }
 
-  changeComment = (comments) => {
+  changeComment = (comment) => {
     this.setState({
-      comments
+      comments: [...this.state.comments, comment]
     })
   }
 
@@ -36,7 +35,7 @@ export default class Article extends Component {
             <img className="article-hd-more" src={moreImg} alt="" />
           </div>
         </header>
-        <img className="article-image" src={alcoholImg} alt="sss" />
+        <img className="article-image" src={this.props.imageObj} alt="sss" />
 
         <div className="section-box">
           <div className="section-content">
@@ -56,7 +55,7 @@ export default class Article extends Component {
           <ul id="parent-list" className="section-content-list">
             {this.state.comments.map((comment, i) => {
               return (
-                <UserComment index={i} content={comment} />
+                <UserComment index={i} content={comment} key={i} />
               )
             })}
           </ul>

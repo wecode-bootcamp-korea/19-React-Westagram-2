@@ -55,7 +55,7 @@
     margin-right: 3px;
 
     background-color: $default-light-white;
-    color: #7acaff;
+    color: #0095f6;
     outline: none;
     border: none;
     font-weight: bold;
@@ -105,9 +105,10 @@
 }
 
 .main-right-recommand-content-btn {
-  color: #0bb2f9;
+  color: #0095f6;
   background-color: $default-light-white;
   border: none;
   outline: none;
   font-weight: bold;
+  cursor: pointer;
 }
