@@ -6,41 +6,51 @@ class LoginJaeyoung  extends React.Component {
     constructor () {
         super();
         this.state = {
-            target : '',
-            target2 : '',
+            idValue : '',
+            psValue : '',
         };
     }
+
     handleIdInput = (e) => {
         this.setState({
-            target : e.target.value
+            idValue : e.target.value
         })
-        console.log(e.target.value);
     }
+
     handlePsInput = (e) => {
         this.setState({
-            target2 : e.target.value
+            psValue : e.target.value
         })
-        console.log(e.target.value);
     }
+
+    // checkLoginStatus = () => {
+    //     const { idValue , psValue , loginBt } = this.state
+    //     idValue.includes('@') && psValue.length > 5 ? this.setState({loginBt : false}) : this.setState({loginBt : true});
+    // }
+
     goToMain = () => {
         this.props.history.push('/main-jaeyoung')
     }
 
     render () {
+        const { idValue , psValue } = this.state
+        const { handleIdInput , handlePsInput } = this
+
         return (
-        <div className="loginContainer">
-            <div className="logoName">
-                <h1>Instargram</h1>
+            <div className="loginContainer">
+                <div className="logoName">
+                    <h1>Instargram</h1>
+                </div>
+                <div className="loginInfo">
+                    <input type="text" value={idValue} onChange={handleIdInput} className="loginId" placeholder="전화번호, 사용자 이름 또는 이메일" />
+                    <input type="password" value={psValue} onChange={handlePsInput} className="loginPs" placeholder="비밀번호"/>
+                    <button className="loginBt" onClick={this.goToMain} disabled={idValue.includes('@') && psValue.length > 5 ? false : true}>로그인</button>
+                </div>
+                <div className="forgetPassword">
+                    <a href="https://www.naver.com/">비밀번호를 잊으셨나요?</a>
+                </div>
             </div>
-            <div className="loginInfo">
-                <input type="text" value={this.state.target} onChange={this.handleIdInput} className="loginId" placeholder="전화번호, 사용자 이름 또는 이메일" />
-                <input type="password" value={this.state.target2} onChange={this.handlePsInput} className="loginPs" placeholder="비밀번호"/>
-                <button className="loginBt" onClick={this.goToMain}>로그인</button>
-            </div>
-            <div className="forgetPassword">
-                <a href="https://www.naver.com/">비밀번호를 잊으셨나요?</a>
-            </div>
-        </div>)
+        )
     }
 }
 

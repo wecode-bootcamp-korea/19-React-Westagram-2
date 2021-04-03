@@ -5,6 +5,19 @@ import heart from '../../../images/jaeyoungLee/Main/heart.jpg';
 import profile from '../../../images/jaeyoungLee/Main/profile.jpg';
 import heungminSon from '../../../images/jaeyoungLee/Main/손흥민.jpg';
 class MainJaeyoung  extends React.Component {
+    constructor () {
+        super();
+        this.state = {
+            commentValue : '',
+        }
+    }
+    getCommentValue = (e) => {
+        this.setState({
+            commentValue : e.target.value
+        })
+        console.log(e.target.value);
+    }
+    
     render(){
         return(
         <>
@@ -58,7 +71,7 @@ class MainJaeyoung  extends React.Component {
                                     <img className="storyimg1" src="https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-19/s150x150/135771971_1881013862054625_6713353513169410837_n.jpg?tp=1&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_ohc=SxJIiqRh4rcAX8RSLYk&ccb=7-4&oh=6dec08c37a69cb2c2a14f21bc36b5eef&oe=608C0912&_nc_sid=48a2a6" alt="프로필1"/>
                                     <p className="storyp1">idon</p>
                                 </div>
-                                <div class="storylast">
+                                <div className="storylast">
                                     <img className="storyimg1" src="https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-19/s150x150/155951500_335125831259326_3729086392261698560_n.jpg?tp=1&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_ohc=3nnTQdlVU98AX_4fVMv&ccb=7-4&oh=4a596fc0e33f2ece37634ae50d38cdde&oe=608C5901&_nc_sid=48a2a6" alt="프로필1"/>
                                     <p className="storyp1">dfewg</p>
                                 </div>
@@ -79,7 +92,7 @@ class MainJaeyoung  extends React.Component {
                         <div className="headername">
                             <div className="headerlast">
                                 <p className="hname">wecode</p>
-                                <span className="hlast"><i class="fas fa-ellipsis-h"></i></span>
+                                <span className="hlast"><i className="fas fa-ellipsis-h"></i></span>
                             </div>
                         </div>
                     </div>
@@ -106,10 +119,10 @@ class MainJaeyoung  extends React.Component {
                     </div>
                 </div>
                 <div className="number_of_likes">
-                    <p className="likes_friend"><span class="like_font">2wo0_0</span>님 <span class="like_font">여러 명</span>이 좋아합니다.</p>
+                    <p className="likes_friend"><span className="like_font">2wo0_0</span>님 <span className="like_font">여러 명</span>이 좋아합니다.</p>
                 </div>
                 <div className="friend_comment">
-                    <p className="explanation"><span class="like_font">wecode</span>  코딩이란..</p>
+                    <p className="explanation"><span className="like_font">wecode</span>  코딩이란..</p>
                 </div>
                 <div className="time">
                     <p className="a_few_hours_ago">7시간 전</p>
@@ -122,7 +135,7 @@ class MainJaeyoung  extends React.Component {
                             </svg>
                         </span>
                         <div className="inputbox">
-                            <input className="inputcomment" type="text" placeholder="댓글 달기..."/>
+                            <input className="inputcomment" value={this.state.commentValue} onChange={this.getCommentValue} type="text" placeholder="댓글 달기..."/>
                         </div>
                         <div className="posting">
                             <button className="posting_button" type="submit" >게시</button>
