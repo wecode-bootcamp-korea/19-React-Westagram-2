@@ -229,6 +229,9 @@ article {
               font-weight: bold;
           }
       }
+      .commentBox {
+          list-style: none;
+      }
   }
   .time {
       width: 598px;
@@ -259,10 +262,14 @@ article {
               outline: none;
           }
           .posting_button {
+              background-color: #fff;
               color: #0095f6;
               border: 0;
           }
-      }
+          .posting_button:focus{
+              outline: none;
+          }
+       }
   }
 }
 

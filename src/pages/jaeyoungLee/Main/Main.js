@@ -1,4 +1,5 @@
 import React from 'react';
+//import CommentComponent from './CommentComponent/CommentComponent';
 import './Main.scss';
 import explore from '../../../images/jaeyoungLee/Main/explore.jpg';
 import heart from '../../../images/jaeyoungLee/Main/heart.jpg';
@@ -9,14 +10,33 @@ class MainJaeyoung  extends React.Component {
         super();
         this.state = {
             commentValue : '',
+            commentList : [],
         }
     }
+
     getCommentValue = (e) => {
         this.setState({
             commentValue : e.target.value
         })
-        console.log(e.target.value);
     }
+
+    clickButton = () => {
+        this.setState({
+            commentList : this.state.commentList.concat(this.state.commentValue),
+            commentValue : ''
+        })
+    }
+
+    enterKey = (e) => {
+        if(e.key === 'Enter'){
+            this.clickButton();
+            this.setState({
+                commentValue : ''
+            })
+        }
+    }
+
+   
     
     render(){
         return(
@@ -123,6 +143,14 @@ class MainJaeyoung  extends React.Component {
                 </div>
                 <div className="friend_comment">
                     <p className="explanation"><span className="like_font">wecode</span>  코딩이란..</p>
+                    <ul className="commentBox">
+                        {this.state.commentList.map(comment => <li className="commentBoxList">{comment}</li>)}
+                    </ul>
+                    {/* <ul>
+                    {this.state.commentList.map((comment, index) =>{
+                        return <CommentComponent key={index} Comment = {this.state.comment}/>;
+                    })}
+                    </ul> */}
                 </div>
                 <div className="time">
                     <p className="a_few_hours_ago">7시간 전</p>
@@ -135,10 +163,10 @@ class MainJaeyoung  extends React.Component {
                             </svg>
                         </span>
                         <div className="inputbox">
-                            <input className="inputcomment" value={this.state.commentValue} onChange={this.getCommentValue} type="text" placeholder="댓글 달기..."/>
+                            <input className="inputcomment" value={this.state.commentValue} onChange={this.getCommentValue}  onKeyPress={this.enterKey} type="text" placeholder="댓글 달기..."/>
                         </div>
                         <div className="posting">
-                            <button className="posting_button" type="submit" >게시</button>
+                            <button className="posting_button" type="submit" onClick={this.clickButton}>게시</button>
                         </div>
                     </div>
                 </div>
