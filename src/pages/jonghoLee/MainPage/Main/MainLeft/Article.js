@@ -50,7 +50,7 @@ export default class Article extends Component {
             </div>
 
           </div>
-          <p className="section-views">조회 1,032회</p>
+          <p className="section-views">조회 {this.props.viewCount}회</p>
 
           <ul id="parent-list" className="section-content-list">
             {this.state.comments.map((comment, i) => {
