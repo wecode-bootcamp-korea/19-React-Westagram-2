@@ -16,24 +16,37 @@ class Login extends React.Component {
         this.state = {
             idValue: "",
             pwValue: "",
-            bottonOpacity: 0.3,
-            buttonOn: false,
+            bottonOpacity: "", // 버튼 활성화를 위한 state
+            buttonOn: false, // 메인으로 가기 위한 state. input에 요건이 충족하면 opacity가 1이 되고, buttonOn이 true가 되어 메인으로 갈 수 있다.
         }
     }
 
+    // handleActivation = () => {
+    //     //const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+    //     if (this.state.idValue.includes("@") && this.state.pwValue.length >= 5) {
+    //         this.setState({
+    //             buttonOn: true,
+    //             buttonOpacity: 1,
+    //         })
+    //     } else {
+    //         this.setState({
+    //             buttonOn: false,
+    //             buttonOpacity: 0.3,
+    //         })
+    //     }
+    // }
+
     handleActivation = () => {
         //const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-        if (this.state.idValue.includes("@") && this.state.pwValue.length >= 5) {
-            this.setState({
-                buttonOn: true,
-                buttonOpacity: 1,
-            })
-        } else {
-            this.setState({
-                buttonOn: false,
-                buttonOpacity: 0.3,
-            })
-        }
+        ( this.state.idValue.includes("@") && this.state.pwValue.length >= 5 )
+        ? this.setState({
+            buttonToGo: true,
+            buttonOpacity: 1,
+        })
+        : this.setState({
+            buttonToGo: false,
+            buttonOpacity: 0.3,
+        })
     }
     
 // disabled, preventDefalut
@@ -49,25 +62,12 @@ class Login extends React.Component {
                 pwValue: e.target.value
             });
         }
-        /*this.setState({
-            value: e.target.value,
-        });
-        console.log(this.state.value);*/
     }
 
     goToMain = () => {
-        if (this.state.buttonOn === true) {
-            this.props.history.push('/main-heeyeol')
-            this.setState({
-                buttonOpacity : 0.3
-            })
-        } 
-        // else if (this.state.buttonOn === false) {
-        //     this.props.history.push('')
-        // } 
-        
-
-        //this.props.history.push('/main');
+        if (this.state.buttonToGo === true) {
+            this.props.history.push('/main-heeyeol') // 정확히 어떤 의미?  
+        } // 아니면 그냥 초기값(false이므로 else를 작성 안해도 됨)
     }
 
     render() {

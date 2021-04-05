@@ -250,8 +250,8 @@
             margin-top: 3px;
 
             .replierMention {
-                display: flex;
-                justify-content: space-between;
+                //display: flex;
+                //justify-content: space-between;
                 margin-top: 1px;
             }
 
@@ -278,6 +278,7 @@
         .replierMentionName {
             font-size: 14px;
             font-weight: bolder;
+            margin-right: 5px;
         }
         
         .authorMentionComment, 

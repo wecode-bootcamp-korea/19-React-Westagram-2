@@ -20,17 +20,63 @@ import p3 from '../../../images/heeyeolKim/Main/p3.png'
 import p4 from '../../../images/heeyeolKim/Main/p4.png'
 import p5 from '../../../images/heeyeolKim/Main/p5.png'
 
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" import
+// headerNav1 from "@fortawesome/home"
+
 class Main extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            newComment: "",
+            comments: [],
+        }
+    }
+
+    createNewComment = (e) => {
+        //e.preventDefault();
+        this.setState({newComment: e.target.value})
+    }
+
+    uploadNewComment = () => {
+        console.log("before : ", this.state.comments)
+        //e.preventDefault();
+        //console.log(this.state.comments.name);
+        
+        // let newArr = this.state.comments;
+        // console.log("newArr : ", newArr)
+        
+        let newArr = this.state.comments.concat(
+            {
+                name: 'Wecode',
+                content: this.state.newComment,
+            }
+        );
+
+        console.log("second newArr : ", newArr)
+
+        this.setState({
+            comments: newArr,
+            newComment: "",
+        }, () => console.log("after : ", this.state.comments))
+        //console.log(this.state.comments);
+
+        // this.state.comments.push({
+        //     name: 'Wecode',
+        //     content: this.state.newComment,
+        // })
+        // this.setState({newComment: ""})
+    }
+
     render() {
         return (
-            <div className = "Main">
+            <div className="Main">
                 <header>
                     <div className="headerContainer">
                         <div className="headerLogo">
-                            <img src={logoImage} alt="instagram logo" />
+                            <img src={logoImage} alt="instagram logo"/>
                         </div>
                         <div className="headerInput">
-                            <input type="text" placeholder="검색" />
+                            <input type="text" placeholder="검색"/>
                         </div>
                         <div className="headerNav">
                             <i className="fas fa-home"></i>
@@ -49,47 +95,50 @@ class Main extends React.Component {
                         <article className="story">
                             <ul className="storyIcons">
                                 <div>
-                                    <li><img src={story1} alt="" /></li>
+                                    <li><img src={story1} alt=""/></li>
                                     hereizhere
                                 </div>
                                 <div>
-                                    <li><img src={story2} alt="" /></li>
+                                    <li><img src={story2} alt=""/></li>
                                     camellya
                                 </div>
                                 <div>
-                                    <li><img src={story3} alt="" /></li>
+                                    <li><img src={story3} alt=""/></li>
                                     wecode
                                 </div>
                                 <div>
-                                    <li><img src={story4} alt="" /></li>
+                                    <li><img src={story4} alt=""/></li>
                                     wecoder
                                 </div>
                                 <div>
-                                    <li><img src={story5} alt="" /></li>
+                                    <li><img src={story5} alt=""/></li>
                                     hithere
                                 </div>
                                 <div>
-                                    <li><img src={story6} alt="" /></li>
+                                    <li><img src={story6} alt=""/></li>
                                     byethere
                                 </div>
                                 <div>
-                                    <li><img src={story7} alt="" /></li>
+                                    <li><img src={story7} alt=""/></li>
                                     okayman_
                                 </div>
                             </ul>
                         </article>
+
                         <article className="feed">
                             <section className="author">
                                 <div className="authorImage">
-                                    <img src={wecode} alt="" />
+                                    <img src={wecode} alt=""/>
                                 </div>
                                 <div className="authorName">
                                     <span>_wecode</span>
-                                    <span><i className="fas fa-ellipsis-h"></i></span>
+                                    <span>
+                                        <i className="fas fa-ellipsis-h"></i>
+                                    </span>
                                 </div>
                             </section>
                             <div className="content">
-                                <img src={content1} alt="" />
+                                <img src={content1} alt=""/>
                             </div>
                             <section className="commentContainer">
                                 <div className="emoticon">
@@ -105,29 +154,28 @@ class Main extends React.Component {
                                 <div className="like">좋아요 1,563개</div>
                                 <div className="comment">
                                     <div className="authorMentionContainer">
-                                            <div>
-                                                <span className="authorMentionName">wecode</span>
-                                                <span className="authorMentionComment">다들 안녕?</span>
-                                            </div>
+                                        <div>
+                                            <span className="authorMentionName">wecode</span>
+                                            <span className="authorMentionComment">다들 안녕?</span>
+                                        </div>
                                     </div>
                                     <div className="commentUnfold">
-                                        <a href="#!">댓글 <span>22개</span> 모두 보기</a>
+                                        <a href="#!">댓글
+                                            <span>22개</span>
+                                            모두 보기</a>
                                     </div>
                                     <div className="replierMentionContainer">
-                                        <div className="replierMention">
-                                            <div>
-                                                <span className="replierMentionName">hereizhere</span>
-                                                <span className="replierMentionComment">그래 안녕.</span>
-                                            </div>
-                                            <div className="commentHeart"><i className="far fa-heart"></i></div>
-                                        </div>
-                                        <div className="replierMention">
-                                            <div>
-                                                <span className="replierMentionName">Wecoder</span>
-                                                <span className="replierMentionComment">Hi! 😊</span>
-                                            </div>
-                                            <div className="commentHeart"><i className="far fa-heart"></i></div>
-                                        </div>
+                                        {
+                                            this.state.comments.map((e) => {
+                                                return (
+                                                        <div className="replierMention">
+                                                            <span className="replierMentionName">{e.name}</span>
+                                                            <span className="replierMentionComment">{e.content}</span>
+                                                        </div>
+                                                    )
+                                                }
+                                            )
+                                        }
                                     </div>
                                 </div>
                                 <div className="createdTime">
@@ -137,12 +185,20 @@ class Main extends React.Component {
                             <section className="createComment">
                                 <div className="createButton">
                                     <div>
-                                        <button>
+                                        <button
+                                        className="uploadComment"
+                                        onClick = {this.uploadNewComment}
+                                        >
                                             <div className="emoticonButton">
                                                 <i className="far fa-smile-wink"></i>
                                             </div>
                                         </button>
-                                        <input className="commentInput" type="text" placeholder="댓글달기..." />
+                                        <input 
+                                        className="commentInput" 
+                                        type="text" 
+                                        placeholder="댓글달기..."
+                                        onChange = {this.createNewComment}
+                                        />
                                     </div>
                                     <div>
                                         <button className="uploadComment">
@@ -157,15 +213,17 @@ class Main extends React.Component {
                         <article className="feed">
                             <section className="author">
                                 <div className="authorImage">
-                                    <img src={profile2} alt="" />
+                                    <img src={profile2} alt=""/>
                                 </div>
                                 <div className="authorName">
                                     <span>someone</span>
-                                    <span><i className="fas fa-ellipsis-h"></i></span>
+                                    <span>
+                                        <i className="fas fa-ellipsis-h"></i>
+                                    </span>
                                 </div>
                             </section>
                             <div className="content">
-                                <img src={profile} alt="" />
+                                <img src={profile} alt=""/>
                             </div>
                             <section className="commentContainer">
                                 <div className="emoticon">
@@ -181,24 +239,29 @@ class Main extends React.Component {
                                 <div className="like">좋아요 564개</div>
                                 <div className="comment">
                                     <div className="authorMentionContainer">
-                                            <div>
-                                                <span className="authorMentionName">someone</span>
-                                                <span className="authorMentionComment">내 포즈가 어때?</span>
-                                            </div>
+                                        <div>
+                                            <span className="authorMentionName">someone</span>
+                                            <span className="authorMentionComment">내 포즈가 어때?</span>
+                                        </div>
                                     </div>
                                     <div className="commentUnfold">
-                                        <a href="#!">댓글 <span>16개</span> 모두 보기</a>
+                                        <a href="#!">댓글
+                                            <span>16개</span>
+                                            모두 보기
+                                        </a>
                                     </div>
                                     <div className="replierMentionContainer">
-                                        <div className="replierMention">
-                                            <div>
-                                                <span className="replierMentionName">hereizhere</span>
-                                                <span className="replierMentionComment">그냥 그래.</span>
-                                            </div>
-                                            <div className="commentHeart"><i className="far fa-heart"></i></div>
-                                        </div>
-                                        
-                                        
+                                        {
+                                            this.state.comments.map((e) => {
+                                                return (
+                                                        <div className="replierMention">
+                                                            <span className="replierMentionName">{e.name}</span>
+                                                            <span className="replierMentionComment">{e.content}</span>
+                                                        </div>
+                                                    )
+                                                }
+                                            )
+                                        }
                                     </div>
                                 </div>
                                 <div className="createdTime">
@@ -213,10 +276,18 @@ class Main extends React.Component {
                                                 <i className="far fa-smile-wink"></i>
                                             </div>
                                         </button>
-                                        <input type="text" placeholder="댓글달기..." />
+                                        <input 
+                                        type="text" 
+                                        placeholder="댓글달기..."
+                                        value={this.state.newComment}
+                                        onChange = {this.createNewComment}
+                                        />
                                     </div>
                                     <div>
-                                        <button className="uploadComment">
+                                        <button 
+                                        className="uploadComment"
+                                        onClick = {this.uploadNewComment}
+                                        >
                                             <a href="#!">
                                                 <span>게시</span>
                                             </a>
@@ -228,12 +299,11 @@ class Main extends React.Component {
                     </main>
 
                     <aside>
-                        
-                        <div className = "asideContainer">
+                        <div className="asideContainer">
                             <div className="asideProfile">
                                 <div className="asideProfileContainer">
                                     <div className="asideProfileImage">
-                                        <img src={story1} alt="" />
+                                        <img src={story1} alt=""/>
                                     </div>
                                     <div className="asideProfilename">
                                         <ul>
@@ -253,7 +323,7 @@ class Main extends React.Component {
                             <ul className="recommentList">
                                 <ul className="recommentListLeft">
                                     <li className="recommentListImage">
-                                        <img src={p1} alt="" />
+                                        <img src={p1} alt=""/>
                                     </li>
                                     <li>
                                         <ul className="recommentListCenter">
@@ -267,7 +337,7 @@ class Main extends React.Component {
                             <ul className="recommentList">
                                 <ul className="recommentListLeft">
                                     <li className="recommentListImage">
-                                        <img src={p2} alt="" />
+                                        <img src={p2} alt=""/>
                                     </li>
                                     <li>
                                         <ul className="recommentListCenter">
@@ -281,7 +351,7 @@ class Main extends React.Component {
                             <ul className="recommentList">
                                 <ul className="recommentListLeft">
                                     <li className="recommentListImage">
-                                        <img src={p3} alt="" />
+                                        <img src={p3} alt=""/>
                                     </li>
                                     <li>
                                         <ul className="recommentListCenter">
@@ -295,7 +365,7 @@ class Main extends React.Component {
                             <ul className="recommentList">
                                 <ul className="recommentListLeft">
                                     <li className="recommentListImage">
-                                        <img src={p4} alt="" />
+                                        <img src={p4} alt=""/>
                                     </li>
                                     <li>
                                         <ul className="recommentListCenter">
@@ -309,7 +379,7 @@ class Main extends React.Component {
                             <ul className="recommentList">
                                 <ul className="recommentListLeft">
                                     <li className="recommentListImage">
-                                        <img src={p5} alt="" />
+                                        <img src={p5} alt=""/>
                                     </li>
                                     <li>
                                         <ul className="recommentListCenter">
