@@ -9,9 +9,8 @@ export default class Comment extends Component {
 
     this.state = {
       comment: "",
-      isAbled: true,
+      isDisabled: true,
     }
-    this.commentInputRef = React.createRef();
   }
 
   commentBtnClick = (e) => {
@@ -19,25 +18,25 @@ export default class Comment extends Component {
     this.updateComment();
   }
 
-  updateComment = () => {
-    this.props.changeComment(this.state.comment);
-    this.commentInputRef.current.value = "";
-  }
-
   commentInputKeyPress = (e) => {
     if (e.key === 'Enter' && this.state.comment.trim().length > 0) {
-      this.updateComment()
+      this.updateComment();
     }
+  }
+
+  updateComment = () => {
+    this.props.changeComment(this.state.comment);
+    this.setState({
+      comment: '',
+      isDisabled: true
+    })
   }
 
   handleAddComment = (e) => {
     this.setState({
-      comment: e.target.value
+      comment: e.target.value,
+      isDisabled: (e.target.value.trim().length > 0) ? false : true,
     });
-
-    this.setState({
-      isAbled: !(e.target.value.trim().length > 0)
-    })
   }
 
   render() {
@@ -45,9 +44,9 @@ export default class Comment extends Component {
       <div className="comment">
         <form className="comment-form" action="#">
           <img className="comment-image" src={smileImg} alt="smile" />
-          <textarea className="comment-text" name="" cols="30" rows="10"
-            placeholder="댓글 달기..." onChange={this.handleAddComment} ref={this.commentInputRef} onKeyPress={this.commentInputKeyPress}></textarea>
-          <button className="comment-btn" onClick={this.commentBtnClick} disabled={this.state.isAbled} >게시</button>
+          <textarea className="comment-text" name="" cols="30" rows="10" value={this.state.comment}
+            placeholder="댓글 달기..." onChange={this.handleAddComment} onKeyPress={this.commentInputKeyPress}></textarea>
+          <button className="comment-btn" onClick={this.commentBtnClick} disabled={this.state.isDisabled} >게시</button>
         </form>
       </div>
     )

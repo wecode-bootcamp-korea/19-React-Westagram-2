@@ -30,7 +30,6 @@ class LoginForm extends Component {
 
   loginCheck = () => {
     const { login_id, login_pw } = this.state;
-
     this.setState({ isAbled: !(login_id.includes("@") && login_pw.length >= 5) })
   };
 

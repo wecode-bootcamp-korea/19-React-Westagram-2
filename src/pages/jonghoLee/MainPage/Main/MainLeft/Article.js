@@ -13,13 +13,39 @@ export default class Article extends Component {
     super();
 
     this.state = {
-      comments: []
+      comments: [],
     }
   }
 
   changeComment = (comment) => {
+    let commentObj = {
+      comment,
+      isLiked: false
+    };
+
     this.setState({
-      comments: [...this.state.comments, comment]
+      comments: [...this.state.comments, commentObj],
+    })
+  }
+
+  changeHeartIcon = (index) => {
+    let { comments } = this.state;
+
+    this.setState({
+      comments: comments.map((comment, i) => {
+        if (i === index) {
+          comment.isLiked = true;
+        }
+        return comment
+      })
+    })
+  }
+
+  deleteComment = (index) => {
+    let { comments } = this.state;
+
+    this.setState({
+      comments: comments.filter((val, i) => i !== index)
     })
   }
 
@@ -54,8 +80,9 @@ export default class Article extends Component {
 
           <ul id="parent-list" className="section-content-list">
             {this.state.comments.map((comment, i) => {
+              let ranNum = Math.round(Math.random() * (1 + 100000000) + 1);
               return (
-                <UserComment index={i} content={comment} key={i} />
+                <UserComment index={i} content={comment.comment} changeHeartIcon={this.changeHeartIcon} isLiked={comment.isLiked} key={ranNum} deleteComment={this.deleteComment} />
               )
             })}
           </ul>

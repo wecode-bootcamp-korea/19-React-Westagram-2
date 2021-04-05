@@ -19,13 +19,11 @@
 
   .fa-heart {
     margin: 0 0 0 auto;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 
   .fa-trash-alt {
     margin-left: 10px;
+    cursor: pointer;
   }
 }

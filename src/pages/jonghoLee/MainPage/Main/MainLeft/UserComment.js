@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import './UserComment.scss'
 
 class UserComment extends Component {
+  heartClickHandler = () => {
+    this.props.changeHeartIcon(this.props.index);
+  }
+
+  trashClickHandler = () => {
+    this.props.deleteComment(this.props.index)
+  }
+
   render() {
-    const { index, content } = this.props;
+    const { content, isLiked } = this.props;
     return (
-      <li key={index} className="section-content-box">
+      <li className="section-content-box">
         <span className="section-content-nickname">jongho</span>
         <span className="section-content-content">{content}</span>
-        <i className="far fa-heart"></i>
-        <i className="far fa-trash-alt"></i>
+        <i onClick={this.heartClickHandler} className="far fa-heart" style={{ color: isLiked ? "red" : "black" }} ></i>
+        <i onClick={this.trashClickHandler} className="far fa-trash-alt"></i>
       </li>
     )
   }

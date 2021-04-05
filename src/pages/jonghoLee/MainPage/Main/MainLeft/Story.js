@@ -87,8 +87,6 @@ export default class Story extends Component {
   render() {
     return (
       <div className="story-container">
-
-
         <ul className="story-list">
           {this.state.storyObj_list.map((story) => {
             return <StoryItem story={story} key={story.index} />
