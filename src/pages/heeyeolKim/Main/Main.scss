@@ -188,7 +188,6 @@
             }
 
             .createdTime {
-                margin-top: 10px;
                 color: gray;
                 font-size: 10px;
             }
@@ -248,17 +247,12 @@
         
         .replierMentionContainer {
             margin-top: 3px;
-
-            .replierMention {
-                //display: flex;
-                //justify-content: space-between;
-                margin-top: 1px;
-            }
-
-            .commentHeart {
-                color: gray;
-                font-size: 12px;
-            }
+            list-style: none;
+            padding: 0;
+            // .commentHeart {
+            //     color: gray;
+            //     font-size: 12px;
+            // }
         }
         
         .commentUnfold {

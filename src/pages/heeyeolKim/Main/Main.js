@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CommentList from './components/CommentList'
+
 import '../Main/Main.scss';
 
 import logoImage from '../../../images/heeyeolKim/Main/logoImage.png'
@@ -10,8 +12,6 @@ import story4 from '../../../images/heeyeolKim/Main/story4.png'
 import story5 from '../../../images/heeyeolKim/Main/story5.png'
 import story6 from '../../../images/heeyeolKim/Main/story6.png'
 import story7 from '../../../images/heeyeolKim/Main/story7.png'
-import wecode from '../../../images/heeyeolKim/Main/wecode.jpg'
-import content1 from '../../../images/heeyeolKim/Main/content1.png'
 import profile2 from '../../../images/heeyeolKim/Main/profile2.png'
 import profile from '../../../images/heeyeolKim/Main/profile.png'
 import p1 from '../../../images/heeyeolKim/Main/p1.png'
@@ -47,6 +47,7 @@ class Main extends React.Component {
         
         let newArr = this.state.comments.concat(
             {
+                id: this.state.comments.length,
                 name: 'Wecode',
                 content: this.state.newComment,
             }
@@ -128,91 +129,6 @@ class Main extends React.Component {
                         <article className="feed">
                             <section className="author">
                                 <div className="authorImage">
-                                    <img src={wecode} alt=""/>
-                                </div>
-                                <div className="authorName">
-                                    <span>_wecode</span>
-                                    <span>
-                                        <i className="fas fa-ellipsis-h"></i>
-                                    </span>
-                                </div>
-                            </section>
-                            <div className="content">
-                                <img src={content1} alt=""/>
-                            </div>
-                            <section className="commentContainer">
-                                <div className="emoticon">
-                                    <div className="emoticonLeft">
-                                        <i className="far fa-heart"></i>
-                                        <i className="far fa-comment"></i>
-                                        <i className="far fa-paper-plane"></i>
-                                    </div>
-                                    <div className="emoticonRight">
-                                        <i className="far fa-bookmark"></i>
-                                    </div>
-                                </div>
-                                <div className="like">좋아요 1,563개</div>
-                                <div className="comment">
-                                    <div className="authorMentionContainer">
-                                        <div>
-                                            <span className="authorMentionName">wecode</span>
-                                            <span className="authorMentionComment">다들 안녕?</span>
-                                        </div>
-                                    </div>
-                                    <div className="commentUnfold">
-                                        <a href="#!">댓글
-                                            <span>22개</span>
-                                            모두 보기</a>
-                                    </div>
-                                    <div className="replierMentionContainer">
-                                        {
-                                            this.state.comments.map((e) => {
-                                                return (
-                                                        <div className="replierMention">
-                                                            <span className="replierMentionName">{e.name}</span>
-                                                            <span className="replierMentionComment">{e.content}</span>
-                                                        </div>
-                                                    )
-                                                }
-                                            )
-                                        }
-                                    </div>
-                                </div>
-                                <div className="createdTime">
-                                    11시간 전
-                                </div>
-                            </section>
-                            <section className="createComment">
-                                <div className="createButton">
-                                    <div>
-                                        <button
-                                        className="uploadComment"
-                                        onClick = {this.uploadNewComment}
-                                        >
-                                            <div className="emoticonButton">
-                                                <i className="far fa-smile-wink"></i>
-                                            </div>
-                                        </button>
-                                        <input 
-                                        className="commentInput" 
-                                        type="text" 
-                                        placeholder="댓글달기..."
-                                        onChange = {this.createNewComment}
-                                        />
-                                    </div>
-                                    <div>
-                                        <button className="uploadComment">
-                                            <a href="#!">
-                                                <span>게시</span>
-                                            </a>
-                                        </button>
-                                    </div>
-                                </div>
-                            </section>
-                        </article>
-                        <article className="feed">
-                            <section className="author">
-                                <div className="authorImage">
                                     <img src={profile2} alt=""/>
                                 </div>
                                 <div className="authorName">
@@ -251,17 +167,18 @@ class Main extends React.Component {
                                         </a>
                                     </div>
                                     <div className="replierMentionContainer">
-                                        {
-                                            this.state.comments.map((e) => {
-                                                return (
-                                                        <div className="replierMention">
-                                                            <span className="replierMentionName">{e.name}</span>
-                                                            <span className="replierMentionComment">{e.content}</span>
-                                                        </div>
-                                                    )
-                                                }
+                                        {this.state.comments.map((comment) => {
+                                            let {id, name, content} = comment;
+                                            // console.log(id)
+                                            return (
+                                            <CommentList
+                                                key = {id}
+                                                name = {name}
+                                                content = {content} />
                                             )
+                                            // console.log(e.id);
                                         }
+                                        )}
                                     </div>
                                 </div>
                                 <div className="createdTime">
