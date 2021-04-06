@@ -24,7 +24,7 @@ class MainJaeyoung  extends React.Component {
     clickButton = () => {
         const { commentList,commentValue } = this.state;
         this.setState({
-            commentList : commentList.concat(commentValue),
+            commentList : [...commentList, commentValue],
             commentValue : ''
         })
     }
@@ -33,7 +33,7 @@ class MainJaeyoung  extends React.Component {
         if(e.key === 'Enter'){
             this.clickButton();
             this.setState({
-                commentValue : ''
+                commentValue : '',
             })
         }
     }
