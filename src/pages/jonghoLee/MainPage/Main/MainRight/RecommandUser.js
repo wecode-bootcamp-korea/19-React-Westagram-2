@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './RecommandUser.scss';
 
 export default class RecommandUser extends Component {
   render() {

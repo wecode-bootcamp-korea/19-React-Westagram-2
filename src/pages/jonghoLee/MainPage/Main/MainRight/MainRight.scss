@@ -1,7 +1,6 @@
 @import "../../../common.scss";
 @import "../../../reset.css";
 
-/* main-right */
 .main-right {
   width: 320px;
   height: 500px;
@@ -81,34 +80,27 @@
   }
 }
 
-.main-right-recommand-div {
-  width: 320px;
+.main-right-friend {
+  width: 100%;
 
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
 
-  margin: 10px 0 10px 0;
+  .darkmode-btn {
+    margin-top: 20px;
+    padding: 7px 10px;
 
-  .main-right-recommand-profile {
-    width: 32px;
-    height: 32px;
+    background-color: rgb(29, 29, 31);
+    border: none;
+    outline: none;
 
-    border-radius: 50%;
+    color: white;
+
+    cursor: pointer;
+
+    &:hover {
+      transition-duration: 0.3s;
+      transform: translateX(-2px) translateY(-2px);
+    }
   }
-
-  .main-right-recommand-content {
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.main-right-recommand-content-btn {
-  color: #0095f6;
-  background-color: $default-light-white;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  cursor: pointer;
 }

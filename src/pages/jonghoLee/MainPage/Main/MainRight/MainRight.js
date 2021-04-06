@@ -6,6 +6,7 @@ import RecommandUser from './RecommandUser';
 export default class MainRight extends Component {
   constructor() {
     super();
+
     this.state = {
       imageList: [
         'https://instagram.ficn1-1.fna.fbcdn.net/v/t51.2885-19/s150x150/58409361_658608891230300_3625990139232124928_n.jpg?tp=1&_nc_ht=instagram.ficn1-1.fna.fbcdn.net&_nc_ohc=fibKKWMHWqIAX82leAF&ccb=7-4&oh=b1faa7128d7adee893124f827c554b7b&oe=6080A6A2',
@@ -33,7 +34,6 @@ export default class MainRight extends Component {
             <span className="sub-recommand">회원님을 위한 추천</span>
             <span className="sub-all">모두 보기</span>
           </div>
-
 
           {this.state.imageList.map((img) => {
             return < RecommandUser imageObj={img} key={img} />

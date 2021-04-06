@@ -3,7 +3,7 @@ import './UserComment.scss'
 
 class UserComment extends Component {
   heartClickHandler = () => {
-    this.props.changeHeartIcon(this.props.index);
+    this.props.changeHeart(this.props.index);
   }
 
   trashClickHandler = () => {
@@ -11,11 +11,11 @@ class UserComment extends Component {
   }
 
   render() {
-    const { content, isLiked } = this.props;
+    const { comment, isLiked } = this.props;
     return (
       <li className="section-content-box">
         <span className="section-content-nickname">jongho</span>
-        <span className="section-content-content">{content}</span>
+        <span className="section-content-content">{comment}</span>
         <i onClick={this.heartClickHandler} className="far fa-heart" style={{ color: isLiked ? "red" : "black" }} ></i>
         <i onClick={this.trashClickHandler} className="far fa-trash-alt"></i>
       </li>

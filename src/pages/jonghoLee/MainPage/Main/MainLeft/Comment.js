@@ -13,26 +13,26 @@ export default class Comment extends Component {
     }
   }
 
-  commentBtnClick = (e) => {
+  commentBtnClickHandler = (e) => {
     e.preventDefault();
-    this.updateComment();
+    this.makeComment();
   }
 
-  commentInputKeyPress = (e) => {
+  textKeyPressHandler = (e) => {
     if (e.key === 'Enter' && this.state.comment.trim().length > 0) {
-      this.updateComment();
+      this.makeComment();
     }
   }
 
-  updateComment = () => {
-    this.props.changeComment(this.state.comment);
+  makeComment = () => {
+    this.props.createComment(this.state.comment);
     this.setState({
       comment: '',
       isDisabled: true
     })
   }
 
-  handleAddComment = (e) => {
+  textChangeHandler = (e) => {
     this.setState({
       comment: e.target.value,
       isDisabled: (e.target.value.trim().length > 0) ? false : true,
@@ -45,8 +45,8 @@ export default class Comment extends Component {
         <form className="comment-form" action="#">
           <img className="comment-image" src={smileImg} alt="smile" />
           <textarea className="comment-text" name="" cols="30" rows="10" value={this.state.comment}
-            placeholder="댓글 달기..." onChange={this.handleAddComment} onKeyPress={this.commentInputKeyPress}></textarea>
-          <button className="comment-btn" onClick={this.commentBtnClick} disabled={this.state.isDisabled} >게시</button>
+            placeholder="댓글 달기..." onChange={this.textChangeHandler} onKeyPress={this.textKeyPressHandler}></textarea>
+          <button className="comment-btn" onClick={this.commentBtnClickHandler} disabled={this.state.isDisabled} >게시</button>
         </form>
       </div>
     )

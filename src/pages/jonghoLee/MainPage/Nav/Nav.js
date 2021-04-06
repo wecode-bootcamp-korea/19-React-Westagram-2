@@ -6,6 +6,7 @@ import planeImg from '../../../../images/jonghoLee/paper-plane.png';
 import compassImg from '../../../../images/jonghoLee/compass.png';
 import heartImg from '../../../../images/jonghoLee/heart.png';
 import jonghoImg from '../../../../images/jonghoLee/jongho.png';
+import NavSearch from './NavSearch';
 
 export default class Nav extends Component {
   render() {
@@ -17,11 +18,7 @@ export default class Nav extends Component {
             <img className="nav-search-icon" src={loupeImg} alt="찾기" />
             <input className="nav-search-input" type="text" placeholder="검색" />
 
-            <div className="nav-search-container">
-              <ul className="nav-search-shadow"></ul>
-              <div className="nav-search-triangle"></div>
-              <ul className="nav-search-list"></ul>
-            </div>
+            <NavSearch />
           </div>
 
           <div className="nav-content">

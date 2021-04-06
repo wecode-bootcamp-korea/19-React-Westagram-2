@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './StoryItem.scss';
 
 export default class StoryItem extends Component {
   render() {

@@ -17,7 +17,7 @@ export default class Article extends Component {
     }
   }
 
-  changeComment = (comment) => {
+  createComment = (comment) => {
     let commentObj = {
       comment,
       isLiked: false
@@ -28,15 +28,15 @@ export default class Article extends Component {
     })
   }
 
-  changeHeartIcon = (index) => {
+  changeHeart = (index) => {
     let { comments } = this.state;
 
     this.setState({
-      comments: comments.map((comment, i) => {
+      comments: comments.map((commentObj, i) => {
         if (i === index) {
-          comment.isLiked = true;
+          commentObj.isLiked = true;
         }
-        return comment
+        return commentObj
       })
     })
   }
@@ -79,17 +79,17 @@ export default class Article extends Component {
           <p className="section-views">조회 {this.props.viewCount}회</p>
 
           <ul id="parent-list" className="section-content-list">
-            {this.state.comments.map((comment, i) => {
+            {this.state.comments.map((commentObj, i) => {
               let ranNum = Math.round(Math.random() * (1 + 100000000) + 1);
               return (
-                <UserComment index={i} content={comment.comment} changeHeartIcon={this.changeHeartIcon} isLiked={comment.isLiked} key={ranNum} deleteComment={this.deleteComment} />
+                <UserComment index={i} comment={commentObj.comment} changeHeart={this.changeHeart} isLiked={commentObj.isLiked} key={ranNum} deleteComment={this.deleteComment} />
               )
             })}
           </ul>
           <p className="section-created">1일 전</p>
         </div>
 
-        <Comment changeComment={this.changeComment} />
+        <Comment createComment={this.createComment} />
 
       </article>
 

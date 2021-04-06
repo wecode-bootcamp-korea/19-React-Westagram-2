@@ -8,7 +8,7 @@ export default class MainLeft extends Component {
   constructor() {
     super();
     this.state = {
-      storyObj: [
+      storyObjs: [
         {
           imageUrl: 'https://images.unsplash.com/photo-1617296378506-bc112028a525?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
           viewCount: this.makeRanNum()
@@ -44,26 +44,22 @@ export default class MainLeft extends Component {
   makeRanNum = () => {
     const min = 1;
     const max = 999000;
-    let randomNum = Math.round(Math.random() * (max - min) + min);
-
-    let ranStr = randomNum + "";
+    let ranNum = Math.round(Math.random() * (max - min) + min);
+    let ranStr = ranNum.toString();
     let newRanStr = "";
     let i = 0;
     for (i = ranStr.length - 3; i > -1; i -= 3) {
       newRanStr = ',' + ranStr.slice(i, i + 3) + newRanStr
     }
-    if (i !== -3)
-      newRanStr = ranStr.slice(0, i + 3) + newRanStr
-    else
-      newRanStr = newRanStr.slice(1, newRanStr.length)
-    return newRanStr;
+
+    return i !== -3 ? ranStr.slice(0, i + 3) + newRanStr : newRanStr.slice(1, newRanStr.length);
   }
 
   render() {
     return (
       <main>
         <Story />
-        {this.state.storyObj.map((obj) => {
+        {this.state.storyObjs.map((obj) => {
           return <Article imageObj={obj.imageUrl} viewCount={obj.viewCount} key={obj.imageUrl} />
         })}
       </main>

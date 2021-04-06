@@ -1,0 +1,25 @@
+.story-content {
+  width: 70px;
+  height: 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto 7.5px;
+
+  .story-content-icon {
+    width: 66px;
+    height: 66px;
+
+    padding: 2px;
+
+    border: 2px solid burlywood;
+    border-radius: 50%;
+  }
+  .story-content-nickname {
+    font-size: 12px;
+    text-align: center;
+  }
+}
