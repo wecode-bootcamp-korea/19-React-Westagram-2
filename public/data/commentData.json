@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Kim",
+        "content": "Hi. 😎"
+    }, {
+        "id": 2,
+        "name": "Lee",
+        "content": "Bye. 🤞"
+    }, {
+        "id": 3,
+        "name": "Choi",
+        "content": "Good Morning!"
+    }, {
+        "id": 4,
+        "name": "Park",
+        "content": "Good Afternoon bro ✨"
+    }, {
+        "id": 5,
+        "name": "Han",
+        "content": "Good Night-"
+    }
+]

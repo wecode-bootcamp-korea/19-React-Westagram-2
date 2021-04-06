@@ -28,8 +28,18 @@ class Main extends React.Component {
         super();
         this.state = {
             newComment: "",
-            comments: [],
+            comments: []
         }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3000/data/commentData.json', {method: 'GET'})
+            .then(
+                res => res.json()
+            )
+            .then(data => {
+                this.setState({comments: data});
+            });
     }
 
     createNewComment = (e) => {
@@ -39,33 +49,25 @@ class Main extends React.Component {
 
     uploadNewComment = () => {
         console.log("before : ", this.state.comments)
-        //e.preventDefault();
-        //console.log(this.state.comments.name);
-        
-        // let newArr = this.state.comments;
-        // console.log("newArr : ", newArr)
-        
-        let newArr = this.state.comments.concat(
-            {
-                id: this.state.comments.length,
-                name: 'Wecode',
-                content: this.state.newComment,
-            }
-        );
+        // e.preventDefault(); console.log(this.state.comments.name); let newArr =
+        // this.state.comments; console.log("newArr : ", newArr)
+
+        let newArr = this
+            .state
+            .comments
+            .concat(
+                {id: this.state.comments.length, name: 'Wecode', content: this.state.newComment}
+            );
 
         console.log("second newArr : ", newArr)
 
         this.setState({
             comments: newArr,
-            newComment: "",
+            newComment: ""
         }, () => console.log("after : ", this.state.comments))
-        //console.log(this.state.comments);
-
-        // this.state.comments.push({
-        //     name: 'Wecode',
-        //     content: this.state.newComment,
-        // })
-        // this.setState({newComment: ""})
+        // console.log(this.state.comments); this.state.comments.push({     name:
+        // 'Wecode',     content: this.state.newComment, }) this.setState({newComment:
+        // ""})
     }
 
     render() {
@@ -167,18 +169,19 @@ class Main extends React.Component {
                                         </a>
                                     </div>
                                     <div className="replierMentionContainer">
-                                        {this.state.comments.map((comment) => {
-                                            let {id, name, content} = comment;
-                                            // console.log(id)
-                                            return (
-                                            <CommentList
-                                                key = {id}
-                                                name = {name}
-                                                content = {content} />
-                                            )
-                                            // console.log(e.id);
+                                        {
+                                            this
+                                                .state
+                                                .comments
+                                                .map((comment) => {
+                                                    let {id, name, content} = comment;
+                                                    // console.log(id)
+                                                    return (
+                                                        <CommentList key={id} name={name} content={content}/>
+                                                    )
+                                                    // console.log(e.id);
+                                                })
                                         }
-                                        )}
                                     </div>
                                 </div>
                                 <div className="createdTime">
@@ -193,18 +196,14 @@ class Main extends React.Component {
                                                 <i className="far fa-smile-wink"></i>
                                             </div>
                                         </button>
-                                        <input 
-                                        type="text" 
-                                        placeholder="댓글달기..."
-                                        value={this.state.newComment}
-                                        onChange = {this.createNewComment}
-                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="댓글달기..."
+                                            value={this.state.newComment}
+                                            onChange={this.createNewComment}/>
                                     </div>
                                     <div>
-                                        <button 
-                                        className="uploadComment"
-                                        onClick = {this.uploadNewComment}
-                                        >
+                                        <button className="uploadComment" onClick={this.uploadNewComment}>
                                             <a href="#!">
                                                 <span>게시</span>
                                             </a>
