@@ -1,0 +1,29 @@
+@import "../../../common.scss";
+@import "../../../reset.css";
+
+.section-content-box {
+  height: 18px;
+  margin: 4px 0;
+
+  display: flex;
+
+  .section-content-nickname {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .section-content-content {
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  .fa-heart {
+    margin: 0 0 0 auto;
+    cursor: pointer;
+  }
+
+  .fa-trash-alt {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}

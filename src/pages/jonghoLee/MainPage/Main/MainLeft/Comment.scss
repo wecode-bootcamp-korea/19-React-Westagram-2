@@ -1,0 +1,62 @@
+@import "../../../common.scss";
+@import "../../../reset.css";
+
+.comment {
+  height: 56px;
+  margin-top: 6px;
+  padding: 0px 10px;
+
+  border-top: 1px solid #e9e9e9;
+
+  .comment-form {
+    display: flex;
+    align-items: center;
+
+    height: 50px;
+
+    margin-top: 5px;
+
+    .comment-image {
+      width: 24px;
+      height: 24px;
+    }
+
+    .comment-text {
+      width: 514px;
+      height: 18px;
+
+      padding-left: 10px;
+
+      border: none;
+
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 14px;
+      resize: none;
+      outline: none;
+
+      overflow: auto;
+
+      &::placeholder {
+        font-weight: 600;
+        color: #b6b6b6;
+      }
+    }
+
+    .comment-btn {
+      width: 57px;
+      height: 18px;
+
+      background-color: white;
+      color: #0095f6;
+      border: none;
+      outline: none;
+
+      font-weight: bold;
+
+      &:disabled {
+        color: #b6e2ff;
+      }
+    }
+  }
+}

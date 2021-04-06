@@ -1,0 +1,106 @@
+@import "../../../common.scss";
+@import "../../../reset.css";
+
+.main-right {
+  width: 320px;
+  height: 500px;
+
+  position: relative;
+
+  .main-right-fiexd {
+    position: fixed;
+    background-color: $default-light-white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.main-right-header {
+  width: 320px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0px 10px 2px;
+
+  .main-right-profile {
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+  }
+
+  .main-right-content {
+    width: 200px;
+
+    .main-right-nickname {
+      margin-bottom: 5px;
+
+      font-size: 14px;
+      font-weight: bold;
+      color: #494949;
+    }
+
+    .main-right-name {
+      color: gray;
+      font-size: 12px;
+    }
+  }
+
+  .main-right-content-btn {
+    margin-right: 3px;
+
+    background-color: $default-light-white;
+    color: #0095f6;
+    outline: none;
+    border: none;
+    font-weight: bold;
+  }
+}
+
+.main-right-sub {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .sub-recommand {
+    padding: 10px;
+    color: gray;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .sub-all {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+.main-right-friend {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  .darkmode-btn {
+    margin-top: 20px;
+    padding: 7px 10px;
+
+    background-color: rgb(29, 29, 31);
+    border: none;
+    outline: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    &:hover {
+      transition-duration: 0.3s;
+      transform: translateX(-2px) translateY(-2px);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+* {
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+$default-light-white: #fafafa;
+$default-dark-white: #e0e0e0;
+$default-dark: #1d1d1f;
+$default-font-family: "Lobster", cursive;
+$default-font-size: 12px;
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

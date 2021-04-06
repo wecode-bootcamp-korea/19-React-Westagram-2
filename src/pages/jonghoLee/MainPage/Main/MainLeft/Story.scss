@@ -1,0 +1,54 @@
+@import "../../../common.scss";
+@import "../../../reset.css";
+
+.story-container {
+  display: flex;
+  height: 118px;
+
+  margin-bottom: 25px;
+  padding: 16px auto;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #dadada;
+  background-color: white;
+
+  overflow: hidden;
+
+  .story-btn-box {
+    width: 614px;
+    height: 20px;
+
+    position: relative;
+
+    .story-previous,
+    .story-next {
+      width: 25px;
+      height: 25px;
+
+      position: absolute;
+
+      background-color: white;
+      border-radius: 50%;
+    }
+
+    .story-previous {
+      margin-left: 1%;
+    }
+
+    .story-next {
+      margin-left: 95%;
+    }
+  }
+
+  .story-list {
+    height: 100px;
+
+    display: flex;
+
+    position: absolute;
+  }
+}

@@ -1,0 +1,109 @@
+@import "../common.scss";
+@import "../reset.css";
+
+.login_form {
+  @extend %flex-center;
+  flex-direction: column;
+
+  width: 348px;
+  height: 211px;
+
+  .login_id_div,
+  .login_pw_div {
+    width: 268px;
+    height: 36px;
+
+    margin: 5px auto;
+
+    .login_id_span,
+    .login_pw_span {
+      position: absolute;
+      width: 267px;
+      height: 36px;
+
+      margin-top: 5px;
+      margin-left: 1px;
+
+      padding-top: 12px;
+      padding-left: 9px;
+
+      font-size: $default-font-size;
+      color: #999999;
+      background-color: #fafafa;
+      border-radius: 3px;
+    }
+
+    #login_id,
+    #login_pw {
+      position: relative;
+
+      width: 268px;
+      height: 36px;
+
+      margin: 5px auto;
+      padding: 8px 0px 5px 7px;
+
+      border: 1px solid #efefef;
+      border-radius: 3px;
+      color: #999999;
+      background-color: #fafafa00;
+
+      font-size: $default-font-size;
+
+      &:focus {
+        outline: 0px solid white;
+        border-radius: 3px;
+        border: 1px solid rgba(184, 184, 184, 0.87);
+      }
+
+      &::placeholder {
+        color: #999999;
+      }
+    }
+  }
+
+  .view_password {
+    position: absolute;
+    display: none;
+
+    margin-top: 10px;
+    margin-left: 200px;
+    margin-bottom: 5px;
+
+    border: 0px;
+    background-color: $default-light-white;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    cursor: pointer;
+  }
+
+  .login_btn {
+    width: 268px;
+    height: 30px;
+
+    margin: 10px auto;
+
+    color: #fff;
+    background-color: #67c2ff;
+    border: 0px solid #fff;
+    border-radius: 5px;
+
+    font-weight: nomal;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 30px;
+
+    &:disabled {
+      background-color: #b2dffc;
+      cursor: unset;
+    }
+  }
+
+  .login_btn:focus {
+    outline: none;
+  }
+}

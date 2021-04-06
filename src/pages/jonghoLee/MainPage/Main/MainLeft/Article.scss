@@ -1,0 +1,94 @@
+@import "../../../common.scss";
+@import "../../../reset.css";
+
+article {
+  width: 614px;
+
+  background-color: white;
+  border: 1px solid #dadada;
+
+  margin-bottom: 40px;
+}
+
+.article-header {
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+
+  .article-hd-image {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+    margin: 5px 5px 5px 15px;
+  }
+
+  .article-hd-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 574px;
+
+    .article-hd-nickname {
+      margin-left: 10px;
+      color: black;
+      text-decoration: none;
+    }
+
+    .article-hd-more {
+      width: 12px;
+      height: 12px;
+
+      margin-right: 20px;
+    }
+  }
+}
+
+.article-image {
+  width: 614px;
+  max-height: 800px;
+
+  margin-left: -1px;
+  border-radius: 0;
+}
+
+.section-box {
+  padding: 0 16px;
+
+  .section-content-left > img,
+  .section-content-right > img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .section-content-left > img {
+    margin-right: 10px;
+  }
+}
+
+.section-views {
+  font-size: 14px;
+  font-weight: bold;
+
+  margin-bottom: 15px;
+}
+
+.section-content {
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+}
+
+.section-created {
+  height: 19px;
+
+  margin-top: 2.5px;
+  margin-bottom: 5px;
+
+  font-size: 10px;
+  color: #999999;
+}

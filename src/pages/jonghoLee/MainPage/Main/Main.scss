@@ -1,0 +1,12 @@
+@import "../../common.scss";
+@import "../../reset.css";
+
+.main-container {
+  width: 955px;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 85px;
+  position: relative;
+}

@@ -1,0 +1,40 @@
+@import "../common.scss";
+@import "../reset.css";
+
+.login_flex {
+  @extend %flex-center;
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: $default-light-white;
+}
+.login_container {
+  @extend %flex-center;
+  flex-direction: column;
+
+  width: 350px;
+  height: 380px;
+
+  border: 1px solid $default-dark-white;
+  border-radius: 1px;
+
+  background-color: white;
+
+  .login_title {
+    margin-bottom: 5px;
+
+    font-size: 39px;
+    font-family: $default-font-family;
+  }
+
+  .reset_pw_a {
+    margin-top: 40px;
+
+    color: #2f5984;
+    font-weight: normal;
+    font-size: $default-font-size;
+    text-decoration: none;
+  }
+}
