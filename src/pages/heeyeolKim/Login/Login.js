@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { withRouter } from 'react-router-dom';
-//import { Link } from 'react-router-dom';
-
-import '../Login/Login.scss';
 
 import appStore1 from '../../../images/heeyeolKim/Login/appStore1.png';
 import googlePlay2 from '../../../images/heeyeolKim/Login/googlePlay2.png';
 import loginPageImage from '../../../images/heeyeolKim/Login/loginPageImage.png';
 import logoImage from '../../../images/heeyeolKim/Login/logoImage.png'
+
+import '../Login/Login.scss';
 
 class Login extends React.Component {
     constructor() {
@@ -16,58 +15,56 @@ class Login extends React.Component {
         this.state = {
             idValue: "",
             pwValue: "",
-            bottonOpacity: "", // 버튼 활성화를 위한 state
-            buttonOn: false, // 메인으로 가기 위한 state. input에 요건이 충족하면 opacity가 1이 되고, buttonOn이 true가 되어 메인으로 갈 수 있다.
+            buttonToGo: "buttonOff",
         }
     }
 
-    // handleActivation = () => {
-    //     //const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-    //     if (this.state.idValue.includes("@") && this.state.pwValue.length >= 5) {
+    handleActivation = () => {
+        const { idValue, pwValue } = this.state;
+        let isLoginValid = idValue.includes("@") && pwValue.length >= 5;
+
+        isLoginValid ? this.setState({buttonToGo: "buttonOn"}) : this.setState({buttonToGo: "buttonOff"})
+    }
+
+    // handleInput = (e) => {
+    //     const {type, name, value} = e.target;
+    //     if (type === "text") {
     //         this.setState({
-    //             buttonOn: true,
-    //             buttonOpacity: 1,
-    //         })
-    //     } else {
+    //             idValue: value
+    //         });
+    //     } else if (type === "password") {
     //         this.setState({
-    //             buttonOn: false,
-    //             buttonOpacity: 0.3,
-    //         })
+    //             pwValue: value
+    //         });
     //     }
     // }
 
-    handleActivation = () => {
-        //const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-        ( this.state.idValue.includes("@") && this.state.pwValue.length >= 5 )
-        ? this.setState({
-            buttonToGo: true,
-            buttonOpacity: 1,
+    handleInput = e => {
+        const { value, name } = e.target;
+        this.setState({
+            [name]: value
         })
-        : this.setState({
-            buttonToGo: false,
-            buttonOpacity: 0.3,
-        })
-    }
-    
-// disabled, preventDefalut
-
-    handleInput = (e) => {
-        //e.preventDefalut();
-        if (e.target.type === "text") {
-            this.setState({
-                idValue: e.target.value
-            });
-        } else if (e.target.type === "password") {
-            this.setState({
-                pwValue: e.target.value
-            });
-        }
     }
 
     goToMain = () => {
-        if (this.state.buttonToGo === true) {
-            this.props.history.push('/main-heeyeol') // 정확히 어떤 의미?  
-        } // 아니면 그냥 초기값(false이므로 else를 작성 안해도 됨)
+        fetch('http://10.58.5.70:8000/user/login', 
+        {method: 'POST', 
+        body: JSON.stringify({
+            email: this.state.idValue,
+            password: this.state.pwValue,
+        })
+        })
+        .then((res) => {
+            console.log(res);
+            return res.json();})
+        .then((data) => {
+            console.log("결과: ", data);
+            if (data.MESSAGE === "SUCCESS") {
+                this.props.history.push('/main-heeyeol')
+                } else {
+                    alert("실패!");
+                }
+        });
     }
 
     render() {
@@ -75,35 +72,34 @@ class Login extends React.Component {
             <div className = "Login">
                 <main className="mainSection">
                     <section className="leftImage" >
-                        <img src={loginPageImage} alt="#" />
+                        <img src={loginPageImage} alt="사진을 찾을 수 없습니다." />
                     </section>
                 
                     <section className="rightLoginPage">
                         <section className="logIn">
                             <h1>
-                                <img src={logoImage} alt="" />
+                                <img src={logoImage} alt="사진을 찾을 수 없습니다." />
                             </h1>
                             <div className="logInMain" onKeyUp={this.handleActivation}>
                                 <input 
                                 className="changeColorId" 
+                                name = "email"
                                 type="text" 
                                 placeholder="전화번호, 사용자 이름 또는 아이디"
                                 onChange = {this.handleInput}
                                 />
                                 <input 
-                                className="changeColorPw" 
+                                className="changeColorPw"
+                                name = "password"
                                 type="password" 
                                 placeholder="비밀번호"
                                 onChange = {this.handleInput}
                                 />
                                 <button 
                                 style={{opacity: this.state.buttonOpacity}}
-                                className="logInButton"
-                                onClick={this.goToMain}
-                                >
-                                    <div>
-                                        로그인
-                                    </div>
+                                className={this.state.buttonToGo}
+                                onClick={this.goToMain}>
+                                    <div>로그인</div>
                                 </button>
                                 <div className="dividers">
                                     <div className="textDivider"></div>
@@ -133,12 +129,12 @@ class Login extends React.Component {
                                 <div className="appImage">
                                     <a href="https://apps.apple.com/app/instagram/id389801252?vt=lo">
                                         <div className="appleStore">
-                                            <img src={appStore1} alt="#" />
+                                            <img src={appStore1} alt="사진을 찾을 수 없습니다." />
                                         </div>
                                     </a>
                                     <a className="googlePlayLink" href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DF26B438C-1346-44AC-83A1-04C3DAEDF1C2%26utm_content%3Dlo%26utm_medium%3Dbadge">
                                         <div className="googlePlay">
-                                            <img src={googlePlay2} alt="#" />
+                                            <img src={googlePlay2} alt="사진을 찾을 수 없습니다." />
                                         </div>
                                     </a>
                                 </div>

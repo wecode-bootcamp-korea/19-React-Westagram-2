@@ -1,8 +1,6 @@
 import React from 'react';
 
-import CommentList from './components/CommentList'
-
-import '../Main/Main.scss';
+import FeedList from './components/FeedList';
 
 import logoImage from '../../../images/heeyeolKim/Main/logoImage.png'
 import story1 from '../../../images/heeyeolKim/Main/story1.png'
@@ -12,65 +10,62 @@ import story4 from '../../../images/heeyeolKim/Main/story4.png'
 import story5 from '../../../images/heeyeolKim/Main/story5.png'
 import story6 from '../../../images/heeyeolKim/Main/story6.png'
 import story7 from '../../../images/heeyeolKim/Main/story7.png'
-import profile2 from '../../../images/heeyeolKim/Main/profile2.png'
-import profile from '../../../images/heeyeolKim/Main/profile.png'
 import p1 from '../../../images/heeyeolKim/Main/p1.png'
 import p2 from '../../../images/heeyeolKim/Main/p2.png'
 import p3 from '../../../images/heeyeolKim/Main/p3.png'
 import p4 from '../../../images/heeyeolKim/Main/p4.png'
 import p5 from '../../../images/heeyeolKim/Main/p5.png'
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" import
-// headerNav1 from "@fortawesome/home"
+import '../Main/Main.scss';
 
 class Main extends React.Component {
     constructor() {
         super();
         this.state = {
             newComment: "",
-            comments: []
+            comments: [],
+            feeds: []
         }
     }
 
     componentDidMount() {
         fetch('http://localhost:3000/data/commentData.json', {method: 'GET'})
-            .then(
-                res => res.json()
-            )
+            .then(res => res.json())
             .then(data => {
                 this.setState({comments: data});
             });
+
+        fetch('http://localhost:3000/data/feedData.json', {method: 'GET'})
+            .then(res => res.json())
+            .then(data => {
+                this.setState({feeds: data});
+        });
     }
 
     createNewComment = (e) => {
-        //e.preventDefault();
-        this.setState({newComment: e.target.value})
+        this.setState({newComment: e.target.value});
     }
 
     uploadNewComment = () => {
-        console.log("before : ", this.state.comments)
-        // e.preventDefault(); console.log(this.state.comments.name); let newArr =
-        // this.state.comments; console.log("newArr : ", newArr)
-
         let newArr = this
             .state
             .comments
-            .concat(
-                {id: this.state.comments.length, name: 'Wecode', content: this.state.newComment}
-            );
+            .concat({
+                id: this.state.comments.length, 
+                name: 'Wecode', 
+                content: this.state.newComment
+            });
 
         console.log("second newArr : ", newArr)
 
         this.setState({
             comments: newArr,
             newComment: ""
-        }, () => console.log("after : ", this.state.comments))
-        // console.log(this.state.comments); this.state.comments.push({     name:
-        // 'Wecode',     content: this.state.newComment, }) this.setState({newComment:
-        // ""})
+        })
     }
 
     render() {
+        const {id, name, content} = this.state.comments;
         return (
             <div className="Main">
                 <header>
@@ -98,120 +93,56 @@ class Main extends React.Component {
                         <article className="story">
                             <ul className="storyIcons">
                                 <div>
-                                    <li><img src={story1} alt=""/></li>
+                                    <li><img src={story1} alt="사진을 찾을 수 없습니다."/></li>
                                     hereizhere
                                 </div>
                                 <div>
-                                    <li><img src={story2} alt=""/></li>
+                                    <li><img src={story2} alt="사진을 찾을 수 없습니다."/></li>
                                     camellya
                                 </div>
                                 <div>
-                                    <li><img src={story3} alt=""/></li>
+                                    <li><img src={story3} alt="사진을 찾을 수 없습니다."/></li>
                                     wecode
                                 </div>
                                 <div>
-                                    <li><img src={story4} alt=""/></li>
+                                    <li><img src={story4} alt="사진을 찾을 수 없습니다."/></li>
                                     wecoder
                                 </div>
                                 <div>
-                                    <li><img src={story5} alt=""/></li>
+                                    <li><img src={story5} alt="사진을 찾을 수 없습니다."/></li>
                                     hithere
                                 </div>
                                 <div>
-                                    <li><img src={story6} alt=""/></li>
+                                    <li><img src={story6} alt="사진을 찾을 수 없습니다."/></li>
                                     byethere
                                 </div>
                                 <div>
-                                    <li><img src={story7} alt=""/></li>
+                                    <li><img src={story7} alt="사진을 찾을 수 없습니다."/></li>
                                     okayman_
                                 </div>
                             </ul>
                         </article>
-
-                        <article className="feed">
-                            <section className="author">
-                                <div className="authorImage">
-                                    <img src={profile2} alt=""/>
-                                </div>
-                                <div className="authorName">
-                                    <span>someone</span>
-                                    <span>
-                                        <i className="fas fa-ellipsis-h"></i>
-                                    </span>
-                                </div>
-                            </section>
-                            <div className="content">
-                                <img src={profile} alt=""/>
-                            </div>
-                            <section className="commentContainer">
-                                <div className="emoticon">
-                                    <div className="emoticonLeft">
-                                        <i className="far fa-heart"></i>
-                                        <i className="far fa-comment"></i>
-                                        <i className="far fa-paper-plane"></i>
-                                    </div>
-                                    <div className="emoticonRight">
-                                        <i className="far fa-bookmark"></i>
-                                    </div>
-                                </div>
-                                <div className="like">좋아요 564개</div>
-                                <div className="comment">
-                                    <div className="authorMentionContainer">
-                                        <div>
-                                            <span className="authorMentionName">someone</span>
-                                            <span className="authorMentionComment">내 포즈가 어때?</span>
-                                        </div>
-                                    </div>
-                                    <div className="commentUnfold">
-                                        <a href="#!">댓글
-                                            <span>16개</span>
-                                            모두 보기
-                                        </a>
-                                    </div>
-                                    <div className="replierMentionContainer">
-                                        {
-                                            this
-                                                .state
-                                                .comments
-                                                .map((comment) => {
-                                                    let {id, name, content} = comment;
-                                                    // console.log(id)
-                                                    return (
-                                                        <CommentList key={id} name={name} content={content}/>
-                                                    )
-                                                    // console.log(e.id);
-                                                })
-                                        }
-                                    </div>
-                                </div>
-                                <div className="createdTime">
-                                    11시간 전
-                                </div>
-                            </section>
-                            <section className="createComment">
-                                <div className="createButton">
-                                    <div>
-                                        <button>
-                                            <div className="emoticonButton">
-                                                <i className="far fa-smile-wink"></i>
-                                            </div>
-                                        </button>
-                                        <input
-                                            type="text"
-                                            placeholder="댓글달기..."
-                                            value={this.state.newComment}
-                                            onChange={this.createNewComment}/>
-                                    </div>
-                                    <div>
-                                        <button className="uploadComment" onClick={this.uploadNewComment}>
-                                            <a href="#!">
-                                                <span>게시</span>
-                                            </a>
-                                        </button>
-                                    </div>
-                                </div>
-                            </section>
-                        </article>
+                        { this.state.feeds.map((feed) => {
+                            const {id, authorProfile, authorName, feedContent, liked, authorMention, unfoldComments, timeBefore} = feed;
+                            return (<FeedList
+                                key = {id}
+                                name = {name}
+                                content = {content}
+                                newComment = {this.state.newComment}
+                                comments = {this.state.comments}
+                                createNewComment = {this.createNewComment}
+                                uploadNewComment = {this.uploadNewComment}
+                                authorName = {authorName}
+                                authorProfile = {authorProfile}
+                                feedContent = {feedContent}
+                                liked = {liked}
+                                authorMention = {authorMention}
+                                unfoldComments = {unfoldComments}
+                                timeBefore = {timeBefore}
+                            />
+                            )
+                            })
+                        }
                     </main>
 
                     <aside>
@@ -219,7 +150,7 @@ class Main extends React.Component {
                             <div className="asideProfile">
                                 <div className="asideProfileContainer">
                                     <div className="asideProfileImage">
-                                        <img src={story1} alt=""/>
+                                        <img src={story1} alt="사진을 찾을 수 없습니다."/>
                                     </div>
                                     <div className="asideProfilename">
                                         <ul>
@@ -237,73 +168,73 @@ class Main extends React.Component {
                                 <li className="asideRecommentAll">모두 보기</li>
                             </ul>
                             <ul className="recommentList">
-                                <ul className="recommentListLeft">
-                                    <li className="recommentListImage">
-                                        <img src={p1} alt=""/>
-                                    </li>
-                                    <li>
+                                <li className="recommentListLeft">
+                                    <span className="recommentListImage">
+                                        <img src={p1} alt="사진을 찾을 수 없습니다."/>
+                                    </span>
+                                    <span>
                                         <ul className="recommentListCenter">
                                             <li>monday</li>
                                             <li>회원님을 팔로우합니다.</li>
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </li>
                                 <li className="recommentListFollow">팔로우</li>
                             </ul>
                             <ul className="recommentList">
-                                <ul className="recommentListLeft">
-                                    <li className="recommentListImage">
-                                        <img src={p2} alt=""/>
-                                    </li>
-                                    <li>
+                                <li className="recommentListLeft">
+                                    <span className="recommentListImage">
+                                        <img src={p2} alt="사진을 찾을 수 없습니다."/>
+                                    </span>
+                                    <span>
                                         <ul className="recommentListCenter">
                                             <li>tuesday</li>
                                             <li>회원님을 팔로우합니다.</li>
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </li>
                                 <li className="recommentListFollow">팔로우</li>
                             </ul>
                             <ul className="recommentList">
-                                <ul className="recommentListLeft">
-                                    <li className="recommentListImage">
-                                        <img src={p3} alt=""/>
-                                    </li>
-                                    <li>
+                                <li className="recommentListLeft">
+                                    <span className="recommentListImage">
+                                        <img src={p3} alt="사진을 찾을 수 없습니다."/>
+                                    </span>
+                                    <span>
                                         <ul className="recommentListCenter">
                                             <li>wednesday</li>
                                             <li>회원님을 팔로우합니다.</li>
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </li>
                                 <li className="recommentListFollow">팔로우</li>
                             </ul>
                             <ul className="recommentList">
-                                <ul className="recommentListLeft">
-                                    <li className="recommentListImage">
-                                        <img src={p4} alt=""/>
-                                    </li>
-                                    <li>
+                                <li className="recommentListLeft">
+                                    <span className="recommentListImage">
+                                        <img src={p4} alt="사진을 찾을 수 없습니다."/>
+                                    </span>
+                                    <span>
                                         <ul className="recommentListCenter">
                                             <li>thursday</li>
                                             <li>회원님을 팔로우합니다.</li>
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </li>
                                 <li className="recommentListFollow">팔로우</li>
                             </ul>
                             <ul className="recommentList">
-                                <ul className="recommentListLeft">
-                                    <li className="recommentListImage">
-                                        <img src={p5} alt=""/>
-                                    </li>
-                                    <li>
+                                <li className="recommentListLeft">
+                                    <span className="recommentListImage">
+                                        <img src={p5} alt="사진을 찾을 수 없습니다."/>
+                                    </span>
+                                    <span>
                                         <ul className="recommentListCenter">
                                             <li>friday</li>
                                             <li>회원님을 팔로우합니다.</li>
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </li>
                                 <li className="recommentListFollow">팔로우</li>
                             </ul>
                         </div>
