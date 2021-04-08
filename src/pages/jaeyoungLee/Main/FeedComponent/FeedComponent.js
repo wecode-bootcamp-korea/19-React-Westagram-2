@@ -25,7 +25,7 @@ class FeedComponent extends Component {
         })
     }
 
-    clickButton = () => {
+    addComment = () => {
         const { commentList,commentValue } = this.state;
         this.setState({
             commentList : [...commentList,
@@ -40,7 +40,7 @@ class FeedComponent extends Component {
 
     enterKey = (e) => {
         if(e.key === 'Enter'){
-            this.clickButton();
+            this.addComment();
             this.setState({
                 commentValue : '',
             })
@@ -110,7 +110,7 @@ class FeedComponent extends Component {
                                 <input className="inputcomment" value={commentValue} onChange={this.getCommentValue}  onKeyPress={this.enterKey} type="text" placeholder="댓글 달기..."/>
                             </div>
                             <div className="posting">
-                                <button className="posting_button" type="submit" onClick={this.clickButton}>게시</button>
+                                <button className="posting_button" type="submit" onClick={this.addComment}>게시</button>
                             </div>
                         </div>
                     </div>

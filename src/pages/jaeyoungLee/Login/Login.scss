@@ -55,20 +55,22 @@
             }
       }    
       .loginBt {
-          width: 268px;
-          height: 30px;
-          margin-top: 5px;
-          border-radius: 3px;
-          background-color: #2795f6;
-          color: #ffffff;
-          border-style: none;
-          &:focus {
-              outline: none;
-            }
-      }
-       .loginBt:disabled {
-           background-color:#b2dffc;
-       }
+        width: 268px;
+        height: 30px;
+        margin-top: 5px;
+        border-radius: 3px;
+        background-color: #2795f6;
+        color: #ffffff;
+        border-style: none;
+        
+        &:focus {
+            outline: none;
+        }
+        
+        &:disabled {
+             background-color: #b2dffc;
+         }
+    }
   }
   .forgetPassword{
       display: flex;

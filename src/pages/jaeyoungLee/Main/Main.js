@@ -160,18 +160,10 @@ class MainJaeyoung  extends React.Component {
                 </div>
                 <aside>
                     <ul className="westagram_contents_box">
-                        <li className="westagram_contents">소개</li>
-                        <li className="westagram_contents">도움말</li>
-                        <li className="westagram_contents">홍보 센터</li>
-                        <li className="westagram_contents">API</li>
-                        <li className="westagram_contents">채용 정보</li>
-                        <li className="westagram_contents">개인정보처리방침</li>
-                        <br/>
-                        <li className="westagram_contents">약관</li>
-                        <li className="westagram_contents">위치</li>
-                        <li className="westagram_contents">인기 계정</li>
-                        <li className="westagram_contents">해시태그</li>
-                        <li className="westagram_contents">언어</li>
+                        {CONTENTS.map((el,id) =>
+                         <li key={id} className="westagram_contents">{el.content}</li>
+                        )}
+                       
                     </ul>
                     <p className="westagram_facebook">© 2021 INSTAGRAM FROM FACEBOOK</p>
                 </aside>
@@ -182,3 +174,17 @@ class MainJaeyoung  extends React.Component {
     }
 }
 export default MainJaeyoung ;
+
+const CONTENTS = [
+    {id: 1, content: "소개"},
+    {id: 2, content: "도움말"},
+    {id: 3, content: "홍보 센터"},
+    {id: 4, content: "API"},
+    {id: 5, content: "채용정보"},
+    {id: 6, content: "개인정보처리방침"},
+    {id: 7, content: "약관"},
+    {id: 8, content: "위치"},
+    {id: 9, content: "인기 계정"},
+    {id: 10, content: "해시태그"},
+    {id: 11, content: "언어"},
+]
