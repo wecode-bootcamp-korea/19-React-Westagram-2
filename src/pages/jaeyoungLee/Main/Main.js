@@ -94,7 +94,7 @@ class MainJaeyoung  extends React.Component {
                         </div>
                     </div>
                 </div>
-                {commentFeed.map(feed =>{
+                {commentFeed.map((feed,id) =>{
                     return (
                         <FeedComponent key={feed.id} profileimg={feed.profileimg} userName={feed.userName} feedimg={feed.feedimg} feedcontent={feed.feedcontent} />
                     );

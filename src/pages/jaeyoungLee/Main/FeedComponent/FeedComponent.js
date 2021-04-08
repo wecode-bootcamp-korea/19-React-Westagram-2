@@ -89,7 +89,7 @@ class FeedComponent extends Component {
                     <div className="friend_comment">
                         <p className="explanation"><span className="like_font">{userName}</span>{feedcontent}</p>
                         <ul className="commentBox">
-                          {commentList.map(ele => {
+                          {commentList.map((ele,id) => {
                             return (
                               <CommentComponent key={ele.id} name={ele.userName} comment={ele.content}/>
                             )
