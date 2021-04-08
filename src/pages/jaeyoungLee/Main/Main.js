@@ -1,6 +1,5 @@
 import React from 'react';
 import FeedComponent from './FeedComponent/FeedComponent';
-import COMMENT from './commentData';
 import './Main.scss';
 import explore from '../../../images/jaeyoungLee/Main/explore.jpg';
 import heart from '../../../images/jaeyoungLee/Main/heart.jpg';
@@ -10,51 +9,26 @@ class MainJaeyoung  extends React.Component {
     constructor () {
         super();
         this.state = {
-            commentValue : '',
-            commentList : [],
+            commentFeed : [],
         }
     }
 
     componentDidMount() {
-        this.setState({
-          commentList: COMMENT
-        });
+        fetch('http://localhost:3000/data/feedData.json', {
+          method: 'GET'
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              commentFeed: data,     
+            });
+          });
       }
 
-    getCommentValue = (e) => {
-        const { value } = e.target;
-        this.setState({
-            commentValue : value
-        })
-    }
-
-    clickButton = () => {
-        const { commentList,commentValue } = this.state;
-        this.setState({
-            commentList : [...commentList,
-                 {
-                     id : commentList.length + 1,
-                     userName : '2wo0_0',
-                     content : commentValue,
-                     isLiked : false
-                 }],
-            commentValue : ''
-        })
-    }
-
-    enterKey = (e) => {
-        if(e.key === 'Enter'){
-            this.clickButton();
-            this.setState({
-                commentValue : '',
-            })
-        }
-    }
+    
 
     render(){
-        const { commentList, commentValue} = this.state;
-        const { getCommentValue, enterKey, clickButton} = this;
-
+        const { commentFeed } = this.state;
         return(
         <>
         <nav>
@@ -120,7 +94,12 @@ class MainJaeyoung  extends React.Component {
                         </div>
                     </div>
                 </div>
-                <FeedComponent commentList={commentList} commentValue={commentValue} getCommentValue={getCommentValue} enterKey={enterKey} clickButton={clickButton} />
+                {commentFeed.map(feed =>{
+                    return (
+                        <FeedComponent key={feed.id} profileimg={feed.profileimg} userName={feed.userName} feedimg={feed.feedimg} feedcontent={feed.feedcontent} />
+                    );
+                })}
+                
             </div>
             <div className="main-right">
                 <div className="my_profile">

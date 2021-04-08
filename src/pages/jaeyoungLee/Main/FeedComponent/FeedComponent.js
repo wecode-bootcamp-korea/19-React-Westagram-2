@@ -1,27 +1,69 @@
 import React, { Component } from 'react';
 import CommentComponent from '../CommentComponent/CommentComponent';
+import COMMENT from '../commentData';
 import './FeedComponent.scss';
 
 class FeedComponent extends Component {
-  
+    constructor () {
+        super();
+        this.state = {
+            commentValue : '',
+            commentList : [],
+        }
+    }
+    
+    componentDidMount() {
+        this.setState({
+          commentList: COMMENT
+        });
+      }
+
+    getCommentValue = (e) => {
+        const { value } = e.target;
+        this.setState({
+            commentValue : value
+        })
+    }
+
+    clickButton = () => {
+        const { commentList,commentValue } = this.state;
+        this.setState({
+            commentList : [...commentList,
+                 {
+                     id : commentList.length + 1,
+                     userName : '2wo0_0',
+                     content : commentValue,
+                 }],
+            commentValue : ''
+        })
+    }
+
+    enterKey = (e) => {
+        if(e.key === 'Enter'){
+            this.clickButton();
+            this.setState({
+                commentValue : '',
+            })
+        }
+    }
   render() {
-    const { commentList , commentValue, getCommentValue, enterKey, clickButton } = this.props;
+    const { commentList , commentValue} = this.state;
+    const { profileimg, userName, feedimg, feedcontent} = this.props;
     return (
       <article className="FeedComponent">
                     <div className="articleheader">
                         <div className="articleheadercontents">
-                            <img className="headerimg" src="https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-19/s150x150/64219646_866712363683753_7365878438877462528_n.jpg?tp=1&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_ohc=sQeUd39qUKoAX9VnaGA&ccb=7-4&oh=17b03b2b8a140f6c76f50d5dc9fa4bc5&oe=6083E470&_nc_sid=c982ba
-                            Request Method: GET" alt="피드프로필"/>
+                            <img className="headerimg" src={profileimg} alt="피드프로필"/>
                             <div className="headername">
                                 <div className="headerlast">
-                                    <p className="hname">wecode</p>
+                                    <p className="hname">{userName}</p>
                                     <span className="hlast"><i className="fas fa-ellipsis-h"></i></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="articleimgbox">
-                        <img className="articleimg" src="https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/162896348_2049003231907899_4671236219368728456_n.jpg?tp=1&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=103&_nc_ohc=5D9Igvqa1a0AX8tO1KZ&ccb=7-4&oh=432e5e8374a7f075279d22cbefa7481a&oe=6083D466&_nc_sid=c982ba" alt="피드이미지"/>
+                        <img className="articleimg" src={feedimg} alt="피드이미지"/>
                     </div>
                     <div className="article_button">
                         <div className="article_button_left">
@@ -45,7 +87,7 @@ class FeedComponent extends Component {
                         <p className="likes_friend"><span className="like_font">2wo0_0</span>님 <span className="like_font">여러 명</span>이 좋아합니다.</p>
                     </div>
                     <div className="friend_comment">
-                        <p className="explanation"><span className="like_font">wecode</span>  코딩이란..</p>
+                        <p className="explanation"><span className="like_font">{userName}</span>{feedcontent}</p>
                         <ul className="commentBox">
                           {commentList.map(ele => {
                             return (
@@ -65,10 +107,10 @@ class FeedComponent extends Component {
                                 </svg>
                             </span>
                             <div className="inputbox">
-                                <input className="inputcomment" value={commentValue} onChange={getCommentValue}  onKeyPress={enterKey} type="text" placeholder="댓글 달기..."/>
+                                <input className="inputcomment" value={commentValue} onChange={this.getCommentValue}  onKeyPress={this.enterKey} type="text" placeholder="댓글 달기..."/>
                             </div>
                             <div className="posting">
-                                <button className="posting_button" type="submit" onClick={clickButton}>게시</button>
+                                <button className="posting_button" type="submit" onClick={this.clickButton}>게시</button>
                             </div>
                         </div>
                     </div>

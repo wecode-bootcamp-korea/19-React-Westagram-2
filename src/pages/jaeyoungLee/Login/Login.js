@@ -11,6 +11,8 @@ class LoginJaeyoung  extends React.Component {
         };
     }
 
+    
+
     handleIdInput = (e) => {
         this.setState({
             idValue : e.target.value
@@ -30,7 +32,19 @@ class LoginJaeyoung  extends React.Component {
 
     goToMain = () => {
         this.props.history.push('/main-jaeyoung')
+        // fetch("http://10.58.4.64:8000/users/signin",{
+        //     method : "POST",
+        //     body: JSON.stringify({
+        //         mobile_number: "010-7228-1705",
+        //         email: this.state.idValue,
+        //         name: "이재영",
+        //         password: this.state.psValue,
+        //     })
+        // })
+        // .then((response) => response.json())
+        // .then((result) => console.log("결과: ", result));
     }
+
 
     render () {
         const { idValue , psValue } = this.state
