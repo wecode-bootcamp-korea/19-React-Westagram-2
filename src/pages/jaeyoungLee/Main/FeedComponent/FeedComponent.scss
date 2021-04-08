@@ -1,0 +1,134 @@
+.FeedComponent {
+  width: 612px;
+  height: auto;
+  background-color: #fff;
+  margin-top: 24px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  .articleheader {
+      width: 612px;
+      height: 59px;
+      border: 1px solid #dbdbdb;
+      .articleheadercontents {
+          width: 582px;
+          height: 27px;
+          margin: 15px auto 15px auto;
+          display: flex;
+          justify-content: space-between;
+          .headerimg {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              object-fit: cover;
+          }
+          
+          .headername {
+              width: 536px;
+              height: 26px;
+              .headerlast {
+                  height: 26px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  .hname {
+                      font-size: 14px;
+                      color: #262626;
+                      font-weight: bold;
+                  }
+              }
+          }
+      }
+  }
+  .articleimg {
+      width: 612px;
+      height: 612px;
+      object-fit: cover;
+  }
+  
+  .article_button {
+      width: 582px;
+      height: 49px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      .article_button_left{
+          .left_button {
+              margin: 8px;
+          }
+      }
+      .article_button_right { 
+          .right_button {
+              margin: 8px;
+          }
+      }
+  }
+
+  .number_of_likes {
+      width: 582px;
+      height: 18px;
+      margin: 0 auto;
+      padding-left: 5px;
+      .likes_friend {
+          font-size: 14px;
+          .like_font {
+              color: #262626;
+              font-weight: bold;
+          }
+      }
+  }
+  .friend_comment {
+      width: 582px;
+      height: auto;
+      margin: 0 auto;
+      margin-top: 8px;
+      padding-left: 5px;
+      .explanation {
+          font-size: 14px;
+          .like_font {
+              color: #262626;
+              font-weight: bold;
+          }
+      }
+      .commentBox {
+          list-style: none;
+      }
+  }
+  .time {
+      width: 598px;
+      padding-left: 18px;
+      .a_few_hours_ago {
+          font-size: 10px;
+          color: #8e8e8e;
+      }
+  }
+  .leave_comment_box {
+      border-top: 1px solid #dbdbdb;
+      margin-top: 10px;
+      .leave_comment {
+          width: 582px;
+          height: 55px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .smilebox {
+              padding: 8px 15px 8px 0px;
+          }
+          .inputcomment {
+              width: 510px;
+              border: 0;
+          }
+          .inputcomment:focus {
+              outline: none;
+          }
+          .posting_button {
+              background-color: #fff;
+              color: #0095f6;
+              border: 0;
+          }
+          .posting_button:focus{
+              outline: none;
+          }
+       }
+  }
+}
