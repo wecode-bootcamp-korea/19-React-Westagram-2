@@ -13,31 +13,19 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            idValue: "",
-            pwValue: "",
-            buttonToGo: "buttonOff",
-        }
+            buttonToGo: false,
+            email: "",
+            password: ""
+        };
     }
 
     handleActivation = () => {
-        const { idValue, pwValue } = this.state;
-        let isLoginValid = idValue.includes("@") && pwValue.length >= 5;
-
-        isLoginValid ? this.setState({buttonToGo: "buttonOn"}) : this.setState({buttonToGo: "buttonOff"})
+        const { email, password } = this.state;
+        let isLoginValid = email.includes("@") && password.length >= 5;
+        this.setState({
+            buttonToGo : isLoginValid
+        })
     }
-
-    // handleInput = (e) => {
-    //     const {type, name, value} = e.target;
-    //     if (type === "text") {
-    //         this.setState({
-    //             idValue: value
-    //         });
-    //     } else if (type === "password") {
-    //         this.setState({
-    //             pwValue: value
-    //         });
-    //     }
-    // }
 
     handleInput = e => {
         const { value, name } = e.target;
@@ -55,15 +43,13 @@ class Login extends React.Component {
         })
         })
         .then((res) => {
-            console.log(res);
             return res.json();})
         .then((data) => {
-            console.log("결과: ", data);
             if (data.MESSAGE === "SUCCESS") {
                 this.props.history.push('/main-heeyeol')
-                } else {
-                    alert("실패!");
-                }
+            } else {
+                alert("실패!");
+            }
         });
     }
 
@@ -97,7 +83,7 @@ class Login extends React.Component {
                                 />
                                 <button 
                                 style={{opacity: this.state.buttonOpacity}}
-                                className={this.state.buttonToGo}
+                                className={this.state.buttonToGo ? "buttonOn" : "buttonOff"}
                                 onClick={this.goToMain}>
                                     <div>로그인</div>
                                 </button>

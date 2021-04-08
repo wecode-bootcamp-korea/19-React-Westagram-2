@@ -1,15 +1,16 @@
 import React from 'react';
 
 import FeedList from './components/FeedList';
+import Story from './components/Story';
 
 import logoImage from '../../../images/heeyeolKim/Main/logoImage.png'
 import story1 from '../../../images/heeyeolKim/Main/story1.png'
-import story2 from '../../../images/heeyeolKim/Main/story2.png'
-import story3 from '../../../images/heeyeolKim/Main/story3.png'
-import story4 from '../../../images/heeyeolKim/Main/story4.png'
-import story5 from '../../../images/heeyeolKim/Main/story5.png'
-import story6 from '../../../images/heeyeolKim/Main/story6.png'
-import story7 from '../../../images/heeyeolKim/Main/story7.png'
+// import story2 from '../../../images/heeyeolKim/Main/story2.png'
+// import story3 from '../../../images/heeyeolKim/Main/story3.png'
+// import story4 from '../../../images/heeyeolKim/Main/story4.png'
+// import story5 from '../../../images/heeyeolKim/Main/story5.png'
+// import story6 from '../../../images/heeyeolKim/Main/story6.png'
+// import story7 from '../../../images/heeyeolKim/Main/story7.png'
 import p1 from '../../../images/heeyeolKim/Main/p1.png'
 import p2 from '../../../images/heeyeolKim/Main/p2.png'
 import p3 from '../../../images/heeyeolKim/Main/p3.png'
@@ -24,7 +25,8 @@ class Main extends React.Component {
         this.state = {
             newComment: "",
             comments: [],
-            feeds: []
+            feeds: [],
+            storys: []
         }
     }
 
@@ -40,6 +42,12 @@ class Main extends React.Component {
             .then(data => {
                 this.setState({feeds: data});
         });
+
+        fetch('/data/storyData.json', {method: 'GET'})
+            .then(res => res.json())
+            .then(data => {
+                this.setState({storys: data});
+            });
     }
 
     createNewComment = (e) => {
@@ -47,21 +55,19 @@ class Main extends React.Component {
     }
 
     uploadNewComment = () => {
-        let newArr = this
-            .state
-            .comments
-            .concat({
-                id: this.state.comments.length, 
-                name: 'Wecode', 
-                content: this.state.newComment
-            });
+        const { comments, newComment } = this.state;
+        const newArr = {
+            id: comments.length + 1, 
+            name: 'Wecode', 
+            content: newComment
+        };
 
-        console.log("second newArr : ", newArr)
-
-        this.setState({
-            comments: newArr,
-            newComment: ""
-        })
+        if (newComment) {
+            this.setState({
+                comments: [...comments, newArr],
+                newComment: ""
+            })
+        }
     }
 
     render() {
@@ -87,39 +93,21 @@ class Main extends React.Component {
                 </header>
 
                 <div className="mainCenter">
-
                     <main>
-
                         <article className="story">
                             <ul className="storyIcons">
-                                <div>
-                                    <li><img src={story1} alt="사진을 찾을 수 없습니다."/></li>
-                                    hereizhere
-                                </div>
-                                <div>
-                                    <li><img src={story2} alt="사진을 찾을 수 없습니다."/></li>
-                                    camellya
-                                </div>
-                                <div>
-                                    <li><img src={story3} alt="사진을 찾을 수 없습니다."/></li>
-                                    wecode
-                                </div>
-                                <div>
-                                    <li><img src={story4} alt="사진을 찾을 수 없습니다."/></li>
-                                    wecoder
-                                </div>
-                                <div>
-                                    <li><img src={story5} alt="사진을 찾을 수 없습니다."/></li>
-                                    hithere
-                                </div>
-                                <div>
-                                    <li><img src={story6} alt="사진을 찾을 수 없습니다."/></li>
-                                    byethere
-                                </div>
-                                <div>
-                                    <li><img src={story7} alt="사진을 찾을 수 없습니다."/></li>
-                                    okayman_
-                                </div>
+                                {
+                                    this.state.storys.map((story) => {
+                                        const { id, storyImage, storyName } = story;
+                                        return (
+                                            <Story 
+                                            key = {id}
+                                            storyImage = {storyImage}
+                                            storyName = {storyName}
+                                            />
+                                        )
+                                    })
+                                }
                             </ul>
                         </article>
                         { this.state.feeds.map((feed) => {
@@ -144,7 +132,6 @@ class Main extends React.Component {
                             })
                         }
                     </main>
-
                     <aside>
                         <div className="asideContainer">
                             <div className="asideProfile">
